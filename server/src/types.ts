@@ -1,3 +1,6 @@
+import z from 'zod'
+import { QuizSchema } from './zodSchema'
+
 export interface QuizDB {
     id: number
     title: string
@@ -43,10 +46,4 @@ export type Question = {
     answers: Answer[]
 }
 
-export type Quiz = {
-    id?: string | number
-    title: string
-    difficulty: string
-    description: string
-    questions: Question[]
-}
+export type Quiz = z.input<typeof QuizSchema>

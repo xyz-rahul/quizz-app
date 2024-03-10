@@ -1,8 +1,10 @@
 import mysql, { ResultSetHeader, RowDataPacket } from 'mysql2/promise'
-import { AnswerDB, QuestionDB, QuizDB, QuizWeb } from '../types'
+import { AnswerDB, QuestionDB, QuizDB, QuizWeb, Quiz } from '../types'
+
 const connect = async () => {
     return await mysql.createConnection(process.env.DATABASE_URL!)
 }
+
 interface QuizRowDataPacket extends RowDataPacket, QuizDB {}
 interface QuestionRowDataPacket extends RowDataPacket, QuestionDB {}
 interface AnswerRowDataPacket extends RowDataPacket, AnswerDB {}
@@ -62,7 +64,7 @@ export async function getQuizById(quizId: number) {
     return resQuiz
 }
 
-export async function addQuiz(quiz: QuizWeb) {
+export async function addQuiz(quiz: Quiz) {
     const connection = await connect()
 
     const { title, difficulty, description, questions } = quiz
