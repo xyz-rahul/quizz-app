@@ -13,7 +13,7 @@ export default function QuizCard({
     <>
       <a href={url || '#'}>
         <section className="flex bg-transparent justify-center align-middle">
-          <div className="relative flex w-80 h-[250px] opacity-75 hover:scale-110  transition m-4 flex-col rounded-xl bg-white p-4 bg-clip-border text-gray-700 shadow-md">
+          <div className="relative flex w-80 h-[250px] bg-opacity-75 hover:scale-110  transition m-4 flex-col rounded-xl bg-white p-4 bg-clip-border text-gray-700 shadow-md">
             <h1 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
               {quizTitle}{' '}
             </h1>
@@ -23,7 +23,9 @@ export default function QuizCard({
             <p className="block h-full overflow-hidden font-sans text-base font-light leading-relaxed text-inherit antialiased">
               {description}
             </p>
-            <button>Take Quiz</button>
+            <button className="bg-blue-400 p-2 font-bold text-xl rounded-md">
+              Take Quiz
+            </button>
           </div>
         </section>
       </a>
