@@ -4,15 +4,24 @@ import { QuizSchema } from '../zodSchema'
 const router = express.Router()
 
 router.get('/', async (req: Request, res: Response) => {
-    console.log('req recieved')
-    const quizList = await getAllQuiz()
-    res.json(quizList)
+    try {
+        const quizList = await getAllQuiz()
+        res.json(quizList)
+    } catch (error) {
+        console.error('Error retrieving quiz list:', error)
+        res.status(500).json({ message: 'Internal server error' })
+    }
 })
 
 router.get('/:id', async (req: Request, res: Response) => {
     const { id } = req.params
-    const quiz = await getQuizById(parseInt(id))
-    res.json(quiz)
+    try {
+        const quiz = await getQuizById(parseInt(id))
+        res.json(quiz)
+    } catch (error) {
+        console.error('Error retrieving quiz by ID:', error)
+        res.status(500).json({ message: 'Internal server error' })
+    }
 })
 
 router.post('/', async (req: Request, res: Response) => {
